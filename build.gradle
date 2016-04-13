@@ -1,0 +1,48 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'eclipse'
+
+// builds a gradle wrapper
+// http://www.gradle.org/docs/current/userguide/gradle_wrapper.html
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+mainClassName = "com.circulate.CirculateICE"
+
+dependencies {
+    compile 'org.mdpnp:x73-idl-rti-dds:0.6.3' //includes all the openIce components
+	compile 'org.mdpnp:demo-devices:0.6.3'
+	compile 'org.mdpnp:philips:0.6.3'
+	compile 'org.mdpnp:philips:0.6.3'
+	compile 'org.mdpnp:oridion:0.6.3'
+	compile 'org.mdpnp:draeger:0.6.3'
+	compile 'org.mdpnp:cpc:0.6.3'
+	compile 'org.mdpnp:fluke:0.6.3'
+	compile 'org.mdpnp:masimo:0.6.3'
+	compile 'org.mdpnp:nellcor:0.6.3'
+	compile 'org.mdpnp:puritanbennett:0.6.3'
+	compile 'org.mdpnp:nonin:0.6.3'
+	compile 'org.mdpnp:simulated:0.6.3'
+	compile 'org.mdpnp:ge:0.6.3'
+
+	compile 'org.json:json:20141113'
+    compile 'org.slf4j:slf4j-api:1.7.10'
+    runtime 'org.slf4j:slf4j-log4j12:1.7.10'
+    runtime 'log4j:log4j:1.2.17'
+    compile ('io.socket:socket.io-client:0.7.0') {
+ 		// excluding org.json which is provided by Android
+		exclude group: 'org.json', module: 'json'
+	}
+
+    compile group: 'commons-cli', name: 'commons-cli', version: '1.2'
+}
+
+repositories {
+  maven { url 'http://build.openice.info/artifactory/libs-snapshot' }
+  maven { url 'http://build.openice.info/artifactory/libs-release' }
+  mavenCentral()
+}
